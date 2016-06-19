@@ -1,0 +1,5 @@
+tags
+*.py[co]
+db.sqlite3
+zhihudaily/media/*
+celerybeat-schedule
