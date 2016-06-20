@@ -5,6 +5,12 @@ import json
 import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 
+
+import os, sys
+
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(base_dir)
+
 import django
 django.setup()
 

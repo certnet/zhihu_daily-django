@@ -30,6 +30,11 @@
     pip install -r requirements.txt
 ```
 
+* 生成数据库
+```sh
+    python manage.py migrate
+```
+
 * 插入数据
 ```sh
     cd zhihudaily/test
