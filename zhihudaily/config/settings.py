@@ -131,4 +131,4 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR + '/media/'
 
 # for celery
-BROKER_URL = 'django://'
+#  BROKER_URL = 'django://'
