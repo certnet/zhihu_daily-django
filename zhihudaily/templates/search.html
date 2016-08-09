@@ -6,7 +6,7 @@
 
 {% block css %} 
 {% load staticfiles %}
-<link rel="stylesheet" href="{% static " daily/css/search.css " %}"> 
+<link rel="stylesheet" href="{% static "daily/css/search.css" %}"> 
 {% endblock %} 
 
 {% block content %}
@@ -52,15 +52,22 @@
 <div class="page">
   <span class="step-links">
     {% if hits.has_previous %}
-    <a href="?page={{ hits.previous_page_number }}&&keyword={{ keyword }}">上一页</a>
+      <a class="page_previous" href="?page={{ hits.previous_page_number }}&&keyword={{ keyword }}">上一页</a>
     {% endif %}
 
     {% if hits %}
-    {% for i in page_range %}
-    {% if hits.number == i %}
-    <span class="current">{{ hits.number }}</span> {% else %}
-    <a href="?page={{ i }}&&keyword={{ keyword }}">{{ i }}</a> {% endif %} {% endfor %} {% endif %} {% if hits.has_next %}
-    <a href="?page={{ hits.next_page_number }}&&keyword={{ keyword }}">下一页</a> {% endif %}
+      {% for i in page_range %}
+        {% if hits.number == i %}
+          <span class="current">{{ hits.number }}</span> 
+        {% else %}
+          <a href="?page={{ i }}&&keyword={{ keyword }}">{{ i }}</a> 
+        {% endif %}
+      {% endfor %}
+    {% endif %} 
+
+    {% if hits.has_next %}
+        <a class="page_next" href="?page={{ hits.next_page_number }}&&keyword={{ keyword }}">下一页</a> 
+    {% endif %}
   </span>
 </div>
 <!-- search result end -->

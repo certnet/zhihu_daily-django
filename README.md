@@ -1,6 +1,6 @@
 # 知乎日报网页版
 
-基于Django的知乎日报的网页版，思路和大部分代码来源于[JobsDong/zhihudaily](https://github.com/JobsDong/zhihudaily)
+基于Django的知乎日报网页版，思路和大部分代码来源于[JobsDong/zhihudaily](https://github.com/JobsDong/zhihudaily)
 
 ## 项目结构
 
@@ -25,25 +25,22 @@
 
 ## 安装与运行
 
-* 安装依赖
-```sh
-    pip install -r requirements.txt
-```
+* 依赖安装
 
-* 生成数据库
-```sh
-    python manage.py migrate
-```
+        pip install -r requirements.txt
 
-* 插入数据
-```sh
-    cd zhihudaily/test
-    python insert_data.py
-```
+* 数据库初始化
+
+        python manage.py migrate
+
+* 数据抓取
+
+        cd zhihudaily/test
+        python insert_data.py
+
 * 运行
-```sh
-    cd zhihudaily
-    python manage.py runserver 9000
-    celery -A config beat
-    celery -A config worker --loglevel=info
-```
+
+        cd zhihudaily
+        python manage.py runserver 9000
+        celery -A config beat
+        celery -A config worker --loglevel=info
