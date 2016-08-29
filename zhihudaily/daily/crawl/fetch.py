@@ -78,6 +78,7 @@ def fetch_image(news_url, image_url):
     """获取图片内容
     """
     _, host_port, path, _, _ = urlparse.urlsplit(image_url)
+    logging.info('==> fetch image: ', path)
     host_port = host_port.split(":")
     host = host_port[0]
     port = int(host_port[1]) if len(host_port) > 1 else 80
@@ -92,7 +93,6 @@ def fetch_image(news_url, image_url):
         img_temp = NamedTemporaryFile()
         img_temp.write(data)
         img_temp.flush()
-        logging.info('==> fetch image: ', img_name)
         return img_name, File(img_temp)
     else:
         return None, None

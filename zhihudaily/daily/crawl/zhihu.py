@@ -4,26 +4,10 @@
 """知乎日报API
 """
 
-__author__ = ['"wuyadong" <wuyadong311521@gmail.com>']
-
 import httplib
 import socket
 import json
-
-
-class ZhiHuServiceException(Exception):
-
-    def __init__(self, status, msg, err):
-        super(ZhiHuServiceException, self).__init__(status, msg, err)
-        self.status = status
-        self.msg = msg
-        self.err = err
-
-
-class ZhiHuClientException(Exception):
-
-    def __init__(self, msg):
-        super(ZhiHuClientException, self).__init__(msg)
+import traceback
 
 
 class ZhiHu(object):
@@ -50,10 +34,10 @@ class ZhiHu(object):
     def _decode_msg(msg):
         if isinstance(msg, str):
             msg = unicode(msg, 'utf-8')
-
         return msg
 
     def _do_http_request(self, url):
+        print '==> request: ', url
         http, content, msg, error, status = None, None, None, None, None
         try:
             http = httplib.HTTPConnection(self._host, self._port, self._timeout)
@@ -66,14 +50,10 @@ class ZhiHu(object):
             else:
                 msg = response.reason
                 error = ZhiHu._decode_msg(response.read())
-        except (httplib.HTTPException, socket.error, socket.timeout) as e:
-            raise ZhiHuClientException(str(e))
-        except Exception as e:
-            raise ZhiHuClientException(str(e))
+                print '==> error: ', error
+        except Exception:
+            traceback.print_exc()
         finally:
             if http:
                 http.close()
-        if msg:
-            raise ZhiHuServiceException(status, msg, error)
-
         return content

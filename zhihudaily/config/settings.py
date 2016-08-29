@@ -27,8 +27,9 @@ SECRET_KEY = '5q8oz$7me3u*beggct18sr_2exs82vu7e*8ic6u3ar-mr!95+)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+#  DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -40,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'kombu.transport.django',
+    # my app
     'daily',
 ]
 
@@ -124,11 +125,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
-#  STATIC_ROOT = BASE_DIR + '/static/'
-STATICFILES_DIRS = [BASE_DIR + '/static/', ]
+STATIC_ROOT = BASE_DIR + '/static/'
+#  STATICFILES_DIRS = [BASE_DIR + '/static/', ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR + '/media/'
-
-# for celery
-#  BROKER_URL = 'django://'

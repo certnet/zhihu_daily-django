@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import logging
 
 from django.shortcuts import render
@@ -6,11 +9,11 @@ from django.core.paginator import Paginator
 from django.core.paginator import PageNotAnInteger
 from django.core.paginator import EmptyPage
 
-from crawl.fetch import today_str, yesterday_date_str, tomorrow_date_str
+from crawl.fetch import today_str
+from crawl.fetch import yesterday_date_str
+from crawl.fetch import tomorrow_date_str
 
 from .models import News
-#  from utils.cache_util import cached
-
 
 # Create your views here.
 
@@ -35,7 +38,7 @@ def index(request):
         logging.error("get daily news failed date_str:%s error:%s cause:%s"
                       % (date_str, e, stack))
     else:
-        return render(request, 'daily.html', context)
+        return render(request, 'daily/index.html', context)
 
 
 def search(request):
@@ -63,4 +66,8 @@ def search(request):
             'keyword': keyword,
             'hits': hits,
         }
-        return render(request, 'search.html', context)
+        return render(request, 'daily/search.html', context)
+
+
+def page_not_found_view(request):
+    return render(request, '404.html')

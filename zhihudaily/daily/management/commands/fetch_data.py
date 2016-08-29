@@ -42,6 +42,7 @@ class Command(BaseCommand):
             if News.objects.filter(news_id=id).exists():
                 continue
             news = zh.get_news(id)
+            image_name, image = fetch.fetch_image(news['share_url'], news['image'])
             news_obj, _ = News.objects.get_or_create(
                 news_id=id,
                 date=date_str,
@@ -49,7 +50,6 @@ class Command(BaseCommand):
                 share_url=news['share_url'],
                 image_source=news['image_source']
             )
-            image_name, image = fetch.fetch_image(news['share_url'], news['image'])
             news_obj.image.save(image_name, image)
 
     def cron_run(self):
