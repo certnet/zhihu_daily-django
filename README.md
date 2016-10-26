@@ -35,8 +35,7 @@
 
 * 数据抓取
 
-        cd zhihudaily/test
-        python insert_data.py
+        python manage.py fetch_data
 
 * 运行
 
